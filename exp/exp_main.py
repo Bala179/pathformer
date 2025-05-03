@@ -263,10 +263,10 @@ class Exp_Main(Exp_Basic):
         inputx = inputx.reshape(-1, inputx.shape[-2], inputx.shape[-1])
 
         mae, mse, rmse, mape, mspe, rse, corr = metric(preds, trues)
-        print('mse:{}, mae:{}, rse:{}'.format(mse, mae, rse))
+        print('mape:{}%, mse:{}, mae:{}, rse:{}'.format(mape, mse, mae, rse))
         f = open("result.txt", 'a')
         f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}, rse:{}'.format(mse, mae, rse))
+        f.write('mape:{}%, mse:{}, mae:{}, rse:{}'.format(mape, mse, mae, rse))
         f.write('\n')
         f.write('\n')
         f.close()
