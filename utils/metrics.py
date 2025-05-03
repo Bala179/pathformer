@@ -25,7 +25,7 @@ def RMSE(pred, true):
 
 
 def MAPE(pred, true):
-    return np.mean(np.abs((pred - true) / true))
+    return np.mean(np.abs((pred - true) / true)) * 100
 
 
 def MSPE(pred, true):
