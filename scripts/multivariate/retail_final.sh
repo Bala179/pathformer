@@ -5,14 +5,14 @@ fi
 if [ ! -d "./logs/LongForecasting" ]; then
     mkdir ./logs/LongForecasting
 fi
-seq_len=12
+seq_len=90
 model_name=PathFormer
 
 root_path_name=./dataset/retail
 model_id_name=retail
 data_name=custom
 
-pred_len=10
+pred_len=90
 
 data_path_name=cluster_1.csv
 python -u run.py \
@@ -26,13 +26,13 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 102 \
+    --num_nodes 114 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
+    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
     --metric mape \
     --train_epochs 20 \
     --patience 10 \
@@ -53,13 +53,13 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 1947 \
+    --num_nodes 1959 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
+    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
     --metric mape \
     --train_epochs 20\
     --patience 10 \
@@ -80,13 +80,13 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 148 \
+    --num_nodes 160 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
+    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
     --metric mape \
     --train_epochs 20\
     --patience 10 \
