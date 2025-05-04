@@ -30,8 +30,8 @@ def preprocess(cluster_data):
 def create_features(total_sales):
     group = pd.DataFrame(index=total_sales.index)
     # 1st and 7th lag
-    group['lag_1'] = total_sales.shift(1)
-    group['lag_7'] = total_sales.shift(7)
+    group['lag_1'] = total_sales.shift(1).fillna(0)
+    group['lag_7'] = total_sales.shift(7).fillna(0)
     
     # rolling mean and sd
     for window in [3, 7, 14, 30]:
@@ -44,7 +44,7 @@ def create_features(total_sales):
     # first order difference
     group['daily_diff'] = total_sales.diff(1)
     
-    return group
+    return group.fillna(0)
 
 if __name__ == "__main__":
     file_names = [f'raw_data/cluster_{i}.csv' for i in [1, 5, 7]]
