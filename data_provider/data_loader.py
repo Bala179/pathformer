@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-import torch
+import numpy as np
 from torch.utils.data import Dataset
 from sklearn.preprocessing import StandardScaler
 from utils.timefeatures import time_features
@@ -260,7 +260,7 @@ class Dataset_Custom(Dataset):
             data_stamp = data_stamp.transpose(1, 0)
         
         # Incorporate the date-based features into the model
-        data = torch.cat((data_stamp, data), dim=2)
+        data = np.concatenate((data_stamp, data), axis=2)
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
@@ -361,7 +361,7 @@ class Dataset_Pred(Dataset):
             data_stamp = data_stamp.transpose(1, 0)
 
         # Incorporate the date-based features into the model
-        data = torch.cat((data_stamp, data), dim=2)
+        data = np.concatenate((data_stamp, data), axis=2)
 
         self.data_x = data[border1:border2]
         if self.inverse:
