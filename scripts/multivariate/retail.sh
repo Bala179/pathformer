@@ -26,7 +26,7 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 99 \
+    --num_nodes 102 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
@@ -53,7 +53,7 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 1944 \
+    --num_nodes 1947 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
@@ -80,7 +80,7 @@ python -u run.py \
     --freq d \
     --seq_len $seq_len \
     --pred_len $pred_len \
-    --num_nodes 145 \
+    --num_nodes 148 \
     --layer_nums 3 \
     --residual_connection 1\
     --k 2\
