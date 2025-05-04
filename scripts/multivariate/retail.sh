@@ -60,7 +60,7 @@ python -u run.py \
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 12 12 6 4 3 6 4 2 \
+    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
     --metric mape \
     --train_epochs 5\
     --patience 10 \
