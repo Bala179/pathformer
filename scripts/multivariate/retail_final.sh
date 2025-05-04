@@ -5,14 +5,14 @@ fi
 if [ ! -d "./logs/LongForecasting" ]; then
     mkdir ./logs/LongForecasting
 fi
-seq_len=90
+seq_len=12
 model_name=PathFormer
 
 root_path_name=./dataset/retail
 model_id_name=retail
 data_name=custom
 
-pred_len=90
+pred_len=10
 
 data_path_name=cluster_1.csv
 python -u run.py \
@@ -32,7 +32,7 @@ python -u run.py \
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
+    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
     --metric mape \
     --train_epochs 20 \
     --patience 10 \
@@ -59,7 +59,7 @@ python -u run.py \
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
+    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
     --metric mape \
     --train_epochs 20\
     --patience 10 \
@@ -86,7 +86,7 @@ python -u run.py \
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 10 6 3 6 3 2 6 5 10 2 3 2 \
+    --patch_size_list 12 6 4 6 4 3 6 4 12 2 4 2 \
     --metric mape \
     --train_epochs 20\
     --patience 10 \
