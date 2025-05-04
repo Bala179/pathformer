@@ -8,17 +8,10 @@ def preprocess(cluster_data):
     # Extract the date part
     cluster_data['Date'] = cluster_data['InvoiceDate'].dt.date
 
-    # Aggregate total sales by date and product code
-    grouped_sales = cluster_data.groupby(['Date', 'StockCode'])['TotalSales'].sum()
-
     # Aggregate total sales by date
     total_sales_by_date = cluster_data.groupby('Date')['TotalSales'].sum()
 
-    # Unstack the product code and fill all NaN's (which represent no sales) with 0
-    productwise_sales = grouped_sales.unstack().fillna(0)
-
-    merged_data = pd.merge(productwise_sales, total_sales_by_date, left_index=True, right_index=True)
-    final_data = pd.merge(create_features(merged_data['TotalSales']), merged_data, left_index=True, right_index=True)
+    final_data = pd.merge(create_features(total_sales_by_date), total_sales_by_date, left_index=True, right_index=True)
     final_data = final_data.reset_index()
     final_data.columns = ["date"] + list(final_data.columns[1:-1]) + ["OT"]
 
