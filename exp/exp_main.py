@@ -55,7 +55,7 @@ class Exp_Main(Exp_Basic):
                 batch_y = batch_y.float().to(self.device)
 
                 batch_x_mark = batch_x_mark.float().to(self.device)
-                batch_y_mark = batch_y_mark.float()
+                batch_y_mark = batch_y_mark.float().to(self.device)
 
                 # Incorporate the date-based features into the model
                 batch_x = torch.cat((batch_x_mark, batch_x), dim=2)
