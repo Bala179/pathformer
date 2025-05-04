@@ -18,12 +18,33 @@ def preprocess(cluster_data):
     productwise_sales = grouped_sales.unstack().fillna(0)
 
     merged_data = pd.merge(productwise_sales, total_sales_by_date, left_index=True, right_index=True)
-    merged_data = merged_data.reset_index()
-    merged_data.columns = ["date"] + list(merged_data.columns[1:-1]) + ["OT"]
+    final_data = pd.merge(create_features(merged_data['TotalSales']), merged_data, left_index=True, right_index=True)
+    final_data = final_data.reset_index()
+    final_data.columns = ["date"] + list(final_data.columns[1:-1]) + ["OT"]
 
-    merged_data = merged_data.set_index("date")
+    final_data = final_data.set_index("date")
 
-    return merged_data
+    return final_data
+
+# statistics by group_idx
+def create_features(total_sales):
+    group = pd.DataFrame(index=total_sales.index)
+    # 1st and 7th lag
+    group['lag_1'] = total_sales.shift(1)
+    group['lag_7'] = total_sales.shift(7)
+    
+    # rolling mean and sd
+    for window in [3, 7, 14, 30]:
+        group[f'rolling_mean_{window}'] = total_sales.rolling(window).mean().bfill()
+        group[f'rolling_std_{window}'] = total_sales.rolling(window).std().bfill()
+    
+    # exponential moving average
+    group['ema_7'] = total_sales.ewm(span=7, adjust=False).mean()
+    
+    # first order difference
+    group['daily_diff'] = total_sales.diff(1)
+    
+    return group
 
 if __name__ == "__main__":
     file_names = [f'raw_data/cluster_{i}.csv' for i in [1, 5, 7]]
