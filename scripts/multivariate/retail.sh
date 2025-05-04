@@ -5,7 +5,7 @@ fi
 if [ ! -d "./logs/LongForecasting" ]; then
     mkdir ./logs/LongForecasting
 fi
-seq_len=10
+seq_len=12
 model_name=PathFormer
 
 root_path_name=./dataset/retail
@@ -60,7 +60,7 @@ python -u run.py \
     --k 2\
     --d_model 16 \
     --d_ff 128 \
-    --patch_size_list 16 12 8 32 12 8 6 4 8 6 4 2 \
+    --patch_size_list 12 12 6 4 3 6 4 2 \
     --metric mape \
     --train_epochs 5\
     --patience 10 \
